@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2, FiEdit, FiSearch } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiEdit, FiSearch, FiBook, FiThumbsUp } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -54,6 +54,27 @@ export default function Profile(){
         }
     }
 
+    async function handleLikePost(id){
+        try{
+            await api.patch(`posts/${id}`, {
+                headers: {
+                    Authorization: researcherId,
+                }
+            });
+
+            await api.get('profile',{
+                headers: {
+                    Authorization: researcherId,
+                }
+            }).then(response => {
+                setPosts(response.data);
+            })
+        }catch(err){
+            alert('Erro ao dar like no post, tente novamente. ') 
+        }
+    }
+
+
     function handleLogout(){
         localStorage.clear();
 
@@ -71,6 +92,9 @@ export default function Profile(){
                 <Link className="button" to="posts/new">Cadastrar novo post</Link>
                 <button id = "navigationBtn">
                     <FiSearch size={20}/>
+                </button>
+                <button id = "navigationBtn">
+                    <FiBook size={20}/>
                 </button>
                 <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#E02041" />
@@ -91,12 +115,20 @@ export default function Profile(){
                         <strong>Texto:</strong>
                         <p>{post.description}</p>
 
+                        <strong>Likes:</strong>
+                        <p>{post.likes}</p>
+
                         <button onClick= {() => handleDeletePost(post.id)} type="button">
                             <FiTrash2 size={20} color="#a8a8b3" />
                         </button>
                         <button onClick= {() => handleUpdatePost(post.id)}type="button" id="updateBtn">
                             <FiEdit size={20} color="#a8a8b3" />
                         </button>
+                        <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtn">
+                            <FiThumbsUp size={20} color="#a8a8b3" />
+                        </button>
+
+                        
                     </li>
                 ))}
             </ul>

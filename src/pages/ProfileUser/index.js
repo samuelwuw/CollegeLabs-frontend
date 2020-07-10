@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPower, FiSearch } from 'react-icons/fi';
+import { FiPower, FiSearch, FiThumbsUp } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -26,11 +26,25 @@ export default function Profile(){
 
     //funções com handle no começo interagem com algo do usuário
 
+    async function handleLikePost(id){
+        try{
+            await api.patch(`posts/${id}`);
+
+            await api.get('posts').then(response => {
+                setPosts(response.data);
+            })
+        }catch(err){
+            alert('Erro ao dar like no post, tente novamente. ') 
+        }
+    }
+
     function handleLogout(){
         localStorage.clear();
 
         history.push('/');
     }
+
+
 
     return (
         <div className="profile-container">
@@ -57,9 +71,16 @@ export default function Profile(){
 
                         <strong >Texto:</strong>
                         <p>{post.description}</p>
+
+                        <strong>Likes:</strong>
+                        <p>{post.likes}</p>
                     
                         <strong id="researcherName" >Pesquisador:</strong>
                         <p id="researcherName">{post.name}</p>
+
+                        <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtn">
+                            <FiThumbsUp size={20} color="#a8a8b3" />
+                        </button>
                     </li>
                 ))}
 
