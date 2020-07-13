@@ -25,8 +25,8 @@ export default function Routes(){
                 <Route path="/publications" component={Publications} />
                 <Route path="/publicationsUser" component={PublicationsUser} />
                 <Route path="/profileUser" component={ProfileUser} />
-                <Route path="/pubs/new" component={NewPublication} />
-                <Route path="/pubs/update" component={UpdatePublication} />
+                <Route path="/publications/new" component={NewPublication} />
+                <Route path="/publications/update" component={UpdatePublication} />
                 <Route path="/posts/new" component={NewIncident} />
                 <Route path="/posts/update" component={UpdateIncident} />
                 <Route path="/members" component={Members} />

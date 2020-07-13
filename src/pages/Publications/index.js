@@ -60,7 +60,7 @@ export default function Profile(){
     async function handleUpdatePub(id){
         try{
             localStorage.setItem("pub_id", id);
-            history.push('/pubs/update');
+            history.push('/publications/update');
         }catch(err){
             alert('Erro ao atualizar post, tente novamente. ')
         }
@@ -134,7 +134,7 @@ export default function Profile(){
                 <span>Bem vindo(a) pesquisador(a), {researcherName}</span>
 
                 
-                <Link className="button" to="pubs/new">Cadastrar nova publicação</Link>
+                <Link className="button" to="publications/new">Cadastrar nova publicação</Link>
                 <button id = "navigationBtn">
                     <FiUsers size={20}/>
                 </button>
@@ -182,7 +182,7 @@ export default function Profile(){
                         <button onClick= {() => handleDeletePub(pub.id)} type="button" id="trashBtnPub" title="deletar">
                             <FiTrash2 size={20} color="#a8a8b3" />
                         </button>
-                        <button onClick= {() => handleUpdatePub(pub.id)}type="button" id="updateBtnPub" title="editar">
+                        <button onClick= {() => handleUpdatePub(pub.id)} type="button" id="updateBtnPub" title="editar">
                             <FiEdit size={20} color="#a8a8b3" />
                         </button>
                         <button onClick= {() => handleLikePub(pub.id)}type="button" id="likeBtnPub" title="curtir">
