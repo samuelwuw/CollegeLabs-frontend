@@ -92,9 +92,13 @@
 }
 
 #navigationButton {
-    margin-left: 950px;
+    margin-left: 850px;
 }
 
-#likeBtn {
+#likeBtnProfUser {
     margin-right: 2px;
+}
+
+#unlikeBtnProfUser {
+    margin-right: 40px;
 }

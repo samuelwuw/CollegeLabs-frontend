@@ -46,7 +46,7 @@ export default function Logon(){
 
                 <form onSubmit={handleLogin}>
                     {/*<h1 id = "logon">Seja Bem-Vindo!</h1>*/}
-                    <h1>Faça seu logon!</h1>
+                    <h1>Faça seu login!</h1>
                     <input 
                         placeholder="Seu email"
                         value = {email}
@@ -56,6 +56,7 @@ export default function Logon(){
                     <input 
                         placeholder="Senha" 
                         value = {password}
+                        type="password"
                         onChange= {e => setPassword(e.target.value)}
                      />
                 
@@ -63,12 +64,12 @@ export default function Logon(){
 
                     <Link className="back-link" to="/register">
                         <FiLogIn size={16} color='#E02041' />
-                        Seja um Pesquisador
+                        Cadastre-se como pesquisador(a)!
                     </Link>
 
                     <Link className="back-link" to="/registerUser" id = "back-link2">
                         <FiLogIn size={16} color='#E02041' />
-                        Tenha acesso a pesquisas 
+                        Cadastre-se como membro(a)!
                     </Link>
                 </form>
             </section>

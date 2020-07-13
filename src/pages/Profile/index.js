@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2, FiEdit, FiSearch, FiBook, FiThumbsUp } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiEdit, FiSearch, FiBook, FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -25,7 +25,7 @@ export default function Profile(){
             }
         }).then(response => {
             setPosts(response.data);
-        })
+        })      
     }, [researcherId]);
 
     
@@ -54,6 +54,14 @@ export default function Profile(){
         }
     }
 
+    async function handleToPublications(id){
+        try{
+            history.push('/publications');
+        }catch(err){
+            alert('Erro ao atualizar post, tente novamente. ')
+        }
+    }
+
     async function handleLikePost(id){
         try{
             await api.patch(`posts/${id}`, {
@@ -74,6 +82,23 @@ export default function Profile(){
         }
     }
 
+    async function handleUnlikePost(id){
+        try{
+            await api.patch(`postsUnlikes/${id}`, {
+            });
+
+            await api.get('profile',{
+                headers: {
+                    Authorization: researcherId,
+                }
+            }).then(response => {
+                setPosts(response.data);
+            })
+        }catch(err){
+            alert('Erro ao cancelar like no post, tente novamente. ') 
+        }
+    }
+
 
     function handleLogout(){
         localStorage.clear();
@@ -86,14 +111,14 @@ export default function Profile(){
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="College Labs"/>
-                <span>Bem vindo pesquisador, {researcherName}</span>
+                <span>Bem vindo(a) pesquisador(a), {researcherName}</span>
 
                 
                 <Link className="button" to="posts/new">Cadastrar novo post</Link>
                 <button id = "navigationBtn">
                     <FiSearch size={20}/>
                 </button>
-                <button id = "navigationBtn">
+                <button onClick={handleToPublications} id = "navigationBtn">
                     <FiBook size={20}/>
                 </button>
                 <button onClick={handleLogout} type="button">
@@ -101,10 +126,9 @@ export default function Profile(){
                 </button>
                 
             </header>
-            <h4>Instituição da graduação:</h4>
-            <h4>Nível de graduação:</h4>
-            <h4>Número de artigos:</h4>
-            <h1>Posts cadastrados</h1>
+            <h4>Para na página de publicações, use {<FiBook size={15}/>} </h4>
+            <h4>Pesquise novos membros em {<FiSearch size={15}/>}! </h4>
+            <h1 id="postsTitle">Posts cadastrados</h1>
 
             <ul>
                 {posts.map(post => (
@@ -118,17 +142,22 @@ export default function Profile(){
                         <strong>Likes:</strong>
                         <p>{post.likes}</p>
 
-                        <button onClick= {() => handleDeletePost(post.id)} type="button">
-                            <FiTrash2 size={20} color="#a8a8b3" />
+
+                        <button onClick= {() => handleUnlikePost(post.id)}type="button" id="unlikeBtnProf" title="unlike">
+                            <FiThumbsDown size={20} color="#a8a8b3" />
                         </button>
-                        <button onClick= {() => handleUpdatePost(post.id)}type="button" id="updateBtn">
-                            <FiEdit size={20} color="#a8a8b3" />
-                        </button>
-                        <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtn">
+
+                        <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtnProf" title="like">
                             <FiThumbsUp size={20} color="#a8a8b3" />
                         </button>
 
-                        
+                        <button onClick= {() => handleUpdatePost(post.id)}type="button" id="updateBtnProf" title="editar">
+                            <FiEdit size={20} color="#a8a8b3" />
+                        </button>
+
+                        <button onClick= {() => handleDeletePost(post.id)} type="button" id="trashBtnProf" title="deletar">
+                            <FiTrash2 size={20} color="#a8a8b3" />
+                        </button>
                     </li>
                 ))}
             </ul>

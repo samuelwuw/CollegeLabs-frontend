@@ -42,9 +42,7 @@ export default function Register(){
         
         try{
                 //axios já envia em json
-            const response = await api.post('researchers', data);
-
-            alert(`Seu id de acesso: ${response.data.id}`);
+            await api.post('researchers', data);
 
             history.push('/');
         }catch(err){

@@ -9,6 +9,9 @@ import logoImg from '../../assets/logo.png';
 
 export default function Register(){
     const [name, setName] = useState('');
+    const [identity, setIdentity] = useState('');
+    const [birthdate, setBirthdate] = useState('');
+    const [graduation, setGraduation] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
@@ -20,15 +23,16 @@ export default function Register(){
 
         const data = {
             name, 
+            identity,
+            birthdate,
+            graduation,
             password,
             email, 
         };
         
         try{
                 //axios já envia em json
-            const response = await api.post('citizens', data);
-
-            alert(`Seu id de acesso: ${response.data.id}`);
+            await api.post('citizens', data);
 
             history.push('/');
         }catch(err){
@@ -57,7 +61,22 @@ export default function Register(){
                         value={name}
                         onChange={e => setName(e.target.value)}
                     />
-                     <input 
+                    <input 
+                        placeholder="Identidade"
+                        value={identity}
+                        onChange={e => setIdentity(e.target.value)}
+                    />
+                    <input 
+                        placeholder="Data de nascimento"
+                        value={birthdate}
+                        onChange={e => setBirthdate(e.target.value)}
+                    />
+                    <input 
+                        placeholder="Nível de graduação"
+                        value={graduation}
+                        onChange={e => setGraduation(e.target.value)}
+                    />
+                    <input 
                         type="email" 
                         placeholder="E-mail"
                         value={email}

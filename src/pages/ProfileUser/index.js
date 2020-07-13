@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPower, FiSearch, FiThumbsUp } from 'react-icons/fi';
+import { FiPower, FiSearch, FiThumbsUp, FiBook, FiThumbsDown } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -38,6 +38,27 @@ export default function Profile(){
         }
     }
 
+    async function handleUnlikePost(id){
+        try{
+            await api.patch(`postsUnlikes/${id}`, {
+            });
+
+            await api.get('posts').then(response => {
+                setPosts(response.data);
+            })
+        }catch(err){
+            alert('Erro ao cancelar like no post, tente novamente. ') 
+        }
+    }
+
+    async function handleToPublications(id){
+        try{
+            history.push('/publicationsUser');
+        }catch(err){
+            alert('Erro ao ir para publicações, tente novamente. ')
+        }
+    }
+
     function handleLogout(){
         localStorage.clear();
 
@@ -50,17 +71,21 @@ export default function Profile(){
         <div className="profile-container">
             <header>
                 <img src={logoImg} alt="College Labs"/>
-                <span>Bem vindo, {citizenName}</span>
+                <span>Bem vindo(a), {citizenName}</span>
 
                 <button id = "navigationButton">
                     <FiSearch size={20}/>
                 </button>
+                <button onClick={handleToPublications} id = "navigationBtn">
+                    <FiBook size={20}/>
+                </button>
                 <button onClick={handleLogout} type="button">
                     <FiPower size={18} color="#E02041" />
                 </button>
+
                 
             </header>
-            <h1>Seguindo: </h1>
+            <h1>Posts dos pesquisadores: </h1>
 
 
             <ul>
@@ -78,8 +103,11 @@ export default function Profile(){
                         <strong id="researcherName" >Pesquisador:</strong>
                         <p id="researcherName">{post.name}</p>
 
-                        <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtn">
+                        <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtnProfUser">
                             <FiThumbsUp size={20} color="#a8a8b3" />
+                        </button>
+                        <button onClick= {() => handleUnlikePost(post.id)}type="button" id="unlikeBtnProfUser">
+                            <FiThumbsDown size={20} color="#a8a8b3" />
                         </button>
                     </li>
                 ))}

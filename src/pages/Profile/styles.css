@@ -85,10 +85,22 @@
     font-size: 16px;
 }
 
-#updateBtn {
-    margin-right: 40px;
-}
-#likeBtn {
-    margin-right: 80px;
+#postsTitle {
+    margin-top: 30px;
 }
 
+#trashBtnProf {
+    margin-right: 2px;
+}
+
+#updateBtnProf {
+    margin-right: 35px;
+}
+
+#likeBtnProf {
+    margin-right: 70px;
+}
+
+#unlikeBtnProf {
+    margin-right: 105px;
+}
