@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { FiPower, FiSearch, 
+import { FiPower, FiUsers, 
     FiCornerDownLeft, FiThumbsUp, FiDownload, FiThumbsDown } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -76,7 +76,7 @@ export default function Profile(){
 
                 
                 <button id = "navigationButton">
-                    <FiSearch size={20}/>
+                    <FiUsers size={20}/>
                 </button>
                 <button onClick={handleToPosts}id = "navigationBtn">
                     <FiCornerDownLeft size={20}/>
@@ -87,13 +87,16 @@ export default function Profile(){
                 
             </header>
             <h4>Para acessar a página de posts, use {<FiCornerDownLeft size={15}/>} </h4>
-            <h4>Pesquise novos membros em {<FiSearch size={15}/>}! </h4>
+            <h4>Pesquise novos membros em {<FiUsers size={15}/>}! </h4>
             <h1 id="postsTitle">Publicações cadastradas</h1>
 
             <ul>
                 {pubs.map(pub => (
                     <li key={pub.id}>
                         
+                        <strong>Pesquisador:</strong>
+                        <p>{pub.name}</p>
+
                         <strong>Título:</strong>
                         <p>{pub.title}</p>
 

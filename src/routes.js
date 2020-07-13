@@ -9,8 +9,10 @@ import ProfileUser from './pages/ProfileUser';
 import NewIncident from './pages/NewIncident';
 import NewPublication from './pages/NewPublication';
 import UpdateIncident from './pages/UpdateIncident';
+import UpdatePublication from './pages/UpdatePublication';
 import Publications from './pages/Publications';
 import PublicationsUser from './pages/PublicationsUser';
+import Members from './pages/Members';
 
 export default function Routes(){
     return(
@@ -24,8 +26,10 @@ export default function Routes(){
                 <Route path="/publicationsUser" component={PublicationsUser} />
                 <Route path="/profileUser" component={ProfileUser} />
                 <Route path="/pubs/new" component={NewPublication} />
+                <Route path="/pubs/update" component={UpdatePublication} />
                 <Route path="/posts/new" component={NewIncident} />
                 <Route path="/posts/update" component={UpdateIncident} />
+                <Route path="/members" component={Members} />
             </Switch>
         </BrowserRouter>
     );

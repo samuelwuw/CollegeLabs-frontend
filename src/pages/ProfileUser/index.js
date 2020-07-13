@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPower, FiSearch, FiThumbsUp, FiBook, FiThumbsDown } from 'react-icons/fi';
+import { FiPower, FiUsers, FiThumbsUp, FiBook, FiThumbsDown } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -74,7 +74,7 @@ export default function Profile(){
                 <span>Bem vindo(a), {citizenName}</span>
 
                 <button id = "navigationButton">
-                    <FiSearch size={20}/>
+                    <FiUsers size={20}/>
                 </button>
                 <button onClick={handleToPublications} id = "navigationBtn">
                     <FiBook size={20}/>
@@ -85,12 +85,17 @@ export default function Profile(){
 
                 
             </header>
-            <h1>Posts dos pesquisadores: </h1>
+            <h4>Para na página de publicações, use {<FiBook size={15}/>} </h4>
+            <h4>Pesquise membros em {<FiUsers size={15}/>}! </h4>
+            <h1 id="postsTitle">Posts dos pesquisadores: </h1>
 
 
             <ul>
                 {posts.map(post => (
                     <li key={post.id}>
+                        <strong id="researcherName" >Pesquisador:</strong>
+                        <p id="researcherName">{post.name}</p>
+
                         <strong >Título:</strong> 
                         <p>{post.title}</p>
 
@@ -98,10 +103,7 @@ export default function Profile(){
                         <p>{post.description}</p>
 
                         <strong>Likes:</strong>
-                        <p>{post.likes}</p>
-                    
-                        <strong id="researcherName" >Pesquisador:</strong>
-                        <p id="researcherName">{post.name}</p>
+                        <p>{post.likes}</p>                    
 
                         <button onClick= {() => handleLikePost(post.id)}type="button" id="likeBtnProfUser">
                             <FiThumbsUp size={20} color="#a8a8b3" />

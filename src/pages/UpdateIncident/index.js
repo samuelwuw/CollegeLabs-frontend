@@ -15,7 +15,6 @@ export default function UpdateIncident(){
     const history = useHistory();
 
     const researcherId = localStorage.getItem('researcherId'); 
-    console.log(researcherId);
 
     async function handleUpdatePost(e){
         //previnir comportamento padrão do form, recarregando a pag

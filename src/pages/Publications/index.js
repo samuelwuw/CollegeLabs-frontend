@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import { FiPower, FiTrash2, FiEdit, FiSearch, 
+import { FiPower, FiTrash2, FiEdit, FiUsers, 
     FiCornerDownLeft, FiThumbsUp, FiUpload, FiDownload, FiThumbsDown} from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -59,8 +59,8 @@ export default function Profile(){
     //arrumar
     async function handleUpdatePub(id){
         try{
-            localStorage.setItem("post_id", id);
-            history.push('/posts/update');
+            localStorage.setItem("pub_id", id);
+            history.push('/pubs/update');
         }catch(err){
             alert('Erro ao atualizar post, tente novamente. ')
         }
@@ -136,7 +136,7 @@ export default function Profile(){
                 
                 <Link className="button" to="pubs/new">Cadastrar nova publicação</Link>
                 <button id = "navigationBtn">
-                    <FiSearch size={20}/>
+                    <FiUsers size={20}/>
                 </button>
                 <button onClick={handleToPosts}id = "navigationBtn">
                     <FiCornerDownLeft size={20}/>
@@ -147,7 +147,7 @@ export default function Profile(){
                 
             </header>
             <h4>Para acessar a página de posts, use {<FiCornerDownLeft size={15}/>} </h4>
-            <h4>Pesquise novos membros em {<FiSearch size={15}/>}! </h4>
+            <h4>Pesquise membros em {<FiUsers size={15}/>}! </h4>
             <h4>Para fazer upload de uma pesquisa use {<FiUpload size={15}/>}! </h4>
             <h4>Para baixar uma pesquisa use {<FiDownload size={15}/>}! </h4>
             <h1 id="postsTitle">Publicações cadastradas</h1>

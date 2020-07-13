@@ -73,8 +73,6 @@
     display: block;
     margin-bottom: 16px;
     color: #41414d;
-    margin-top: 5px;
-    margin-bottom: 5px;
 }
 
 .profile-container ul li p + strong{
@@ -87,22 +85,22 @@
     font-size: 16px;
 }
 
-#updateBtn {
-    margin-right: 40px;
+#postsTitle {
+    margin-top: 30px;
 }
 
-#navigationButton {
-    margin-left: 850px;
-}
-
-#likeBtnProfUser {
+#trashBtnProf {
     margin-right: 2px;
 }
 
-#unlikeBtnProfUser {
-    margin-right: 40px;
+#updateBtnProf {
+    margin-right: 35px;
 }
 
-#postsTitle {
-    margin-top: 30px;
+#likeBtnProf {
+    margin-right: 70px;
+}
+
+#unlikeBtnProf {
+    margin-right: 105px;
 }
