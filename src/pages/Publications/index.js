@@ -60,7 +60,7 @@ export default function Profile(){
     async function handleUpdatePub(id){
         try{
             localStorage.setItem("pub_id", id);
-            history.push('/publications/update');
+            history.push('/publicat/update');
         }catch(err){
             alert('Erro ao atualizar post, tente novamente. ')
         }
@@ -134,7 +134,7 @@ export default function Profile(){
                 <span>Bem vindo(a) pesquisador(a), {researcherName}</span>
 
                 
-                <Link className="button" to="publications/new">Cadastrar nova publicação</Link>
+                <Link className="button" to="publicat/new">Cadastrar nova publicação</Link>
                 <button id = "navigationBtn">
                     <FiUsers size={20}/>
                 </button>
