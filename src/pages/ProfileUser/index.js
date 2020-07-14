@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { FiPower, FiUsers, FiThumbsUp, FiBook, FiThumbsDown } from 'react-icons/fi';
+import { FiPower, FiUser, FiThumbsUp, FiBook, FiThumbsDown, FiEdit } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -59,6 +59,14 @@ export default function Profile(){
         }
     }
 
+    async function handleToAccount(id){
+        try{
+            history.push('/citizen/update');
+        }catch(err){
+            alert('Erro ao ir para publicações, tente novamente. ')
+        }
+    }
+
     function handleLogout(){
         localStorage.clear();
 
@@ -73,8 +81,11 @@ export default function Profile(){
                 <img src={logoImg} alt="College Labs"/>
                 <span>Bem vindo(a), {citizenName}</span>
 
-                <button id = "navigationButton">
-                    <FiUsers size={20}/>
+                <button onClick={handleToAccount} id = "navigationButton">
+                    <FiUser size={20}/>
+                </button>
+                <button onClick={handleToAccount} id="navigationAccount">
+                    <FiEdit size={20}/>
                 </button>
                 <button onClick={handleToPublications} id = "navigationBtn">
                     <FiBook size={20}/>
@@ -86,7 +97,8 @@ export default function Profile(){
                 
             </header>
             <h4>Para na página de publicações, use {<FiBook size={15}/>} </h4>
-            <h4>Pesquise membros em {<FiUsers size={15}/>}! </h4>
+            <h4>Para editar as informações da sua conta, use {<FiEdit size={15}/>} </h4>
+            <h4>Pesquise membros em {<FiUser size={15}/>}! </h4>
             <h1 id="postsTitle">Posts dos pesquisadores: </h1>
 
 
@@ -95,6 +107,9 @@ export default function Profile(){
                     <li key={post.id}>
                         <strong id="researcherName" >Pesquisador:</strong>
                         <p id="researcherName">{post.name}</p>
+
+                        <strong>Temas de pesquisa:</strong>
+                        <p>{post.theme1}</p>
 
                         <strong >Título:</strong> 
                         <p>{post.title}</p>

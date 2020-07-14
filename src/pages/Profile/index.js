@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { FiPower, FiTrash2, FiEdit, FiUsers, FiBook, FiThumbsUp, FiThumbsDown } from 'react-icons/fi';
+import { FiPower, FiTrash2, FiEdit, FiUser, FiBook,
+     FiThumbsUp, FiThumbsDown,FiBookOpen } from 'react-icons/fi';
 
 import api from '../../services/api';
 
@@ -62,6 +63,23 @@ export default function Profile(){
         }
     }
 
+    async function handleToAccount(id){
+        try{
+            history.push('/researcher/update');
+        }catch(err){
+            alert('Erro ao ir para edição de conta, tente novamente. ')
+        }
+    }
+
+    async function handleToThemes(id){
+        try{
+            history.push('/themes');
+        }catch(err){
+            alert('Erro ao ir para edição de conta, tente novamente. ')
+        }
+    }
+
+
     async function handleLikePost(id){
         try{
             await api.patch(`posts/${id}`, {
@@ -116,7 +134,13 @@ export default function Profile(){
                 
                 <Link className="button" to="posts/new">Cadastrar novo post</Link>
                 <button id = "navigationBtn">
-                    <FiUsers size={20}/>
+                    <FiUser size={20}/>
+                </button>
+                <button onClick={handleToAccount} id="navigationAccount">
+                    <FiEdit size={20}/>
+                </button>
+                <button onClick={handleToThemes} id="">
+                    <FiBookOpen size={20}/>
                 </button>
                 <button onClick={handleToPublications} id = "navigationBtn">
                     <FiBook size={20}/>
@@ -127,7 +151,9 @@ export default function Profile(){
                 
             </header>
             <h4>Para na página de publicações, use {<FiBook size={15}/>} </h4>
-            <h4>Pesquise membros em {<FiUsers size={15}/>}! </h4>
+            <h4>Para editar as informações da sua conta, use {<FiEdit size={15}/>} </h4>
+            <h4>Para escolher temas de interesse, use {<FiBookOpen size={15}/>} </h4>
+            <h4>Pesquise membros em {<FiUser size={15}/>}! </h4>
             <h1 id="postsTitle">Posts cadastrados</h1>
 
             <ul>
