@@ -23,7 +23,6 @@ export default function NewIncident(){
             theme1,  
         };
 
-        console.log(data);
         try{
             await api.patch(`themes/${researcherId}`, data);
 

@@ -55,6 +55,7 @@ export default function Profile(){
         }
     }
 
+    //--------------------------------------------------------------push handles
     async function handleToPublications(id){
         try{
             history.push('/publications');
@@ -74,6 +75,14 @@ export default function Profile(){
     async function handleToThemes(id){
         try{
             history.push('/themes');
+        }catch(err){
+            alert('Erro ao ir para edição de conta, tente novamente. ')
+        }
+    }
+
+    async function handleToMembers(id){
+        try{
+            history.push('/members');
         }catch(err){
             alert('Erro ao ir para edição de conta, tente novamente. ')
         }
@@ -133,7 +142,7 @@ export default function Profile(){
 
                 
                 <Link className="button" to="posts/new">Cadastrar novo post</Link>
-                <button id = "navigationBtn">
+                <button onClick={handleToMembers}>
                     <FiUser size={20}/>
                 </button>
                 <button onClick={handleToAccount} id="navigationAccount">
