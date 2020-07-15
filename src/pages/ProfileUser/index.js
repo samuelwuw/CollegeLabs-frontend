@@ -81,13 +81,13 @@ export default function Profile(){
                 <img src={logoImg} alt="College Labs"/>
                 <span>Bem vindo(a), {citizenName}</span>
 
-                <button onClick={handleToAccount} id = "navigationButton">
+                <button onClick={handleToAccount} id = "friendsBtn">
                     <FiUser size={20}/>
                 </button>
-                <button onClick={handleToAccount} id="navigationAccount">
+                <button onClick={handleToAccount} id="navigationAccount11">
                     <FiEdit size={20}/>
                 </button>
-                <button onClick={handleToPublications} id = "navigationBtn">
+                <button onClick={handleToPublications} id = "navigationBtn11">
                     <FiBook size={20}/>
                 </button>
                 <button onClick={handleLogout} type="button">
